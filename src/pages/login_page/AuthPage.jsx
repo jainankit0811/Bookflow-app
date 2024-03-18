@@ -16,6 +16,7 @@ import InputAdornment from "@mui/material/InputAdornment"; // Import InputAdornm
 import VisibilityIcon from "@mui/icons-material/Visibility"; // Import the eye icon
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import TimedPopup from "../../components/timedpopup/TimedPopup";
+// import scrollToTop from "../../components/scroll/scroll-to-top";
 import "./_AuthPage.css";
 import axios from "axios";
 import "./ForgetPassword";
@@ -218,6 +219,11 @@ const AuthPage = () => {
   };
 
   const handleToggleForm = () => {
+    if (showLogin) {
+      window.scrollTo(0, 50);
+    } else {
+      window.scrollTo(0, 80);
+    }
     setShowLogin(!showLogin);
   };
 
@@ -256,45 +262,47 @@ const AuthPage = () => {
             {showLogin ? (
               <div>
                 <form>
-                  <TextField
-                    label="Email"
-                    placeholder="Email"
-                    variant="outlined"
-                    value={loginData.loginEmail}
-                    onChange={handleLoginEmailChange}
-                    fullWidth
-                    margin="normal"
-                    required
-                  />
-                  <TextField
-                    label="Password"
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Password"
-                    variant="outlined"
-                    value={loginData.loginPassword}
-                    onChange={handleLoginPasswordChange}
-                    fullWidth
-                    margin="normal"
-                    required
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton
-                            onClick={handleTogglePassword}
-                            edge="end"
-                            size="small"
-                            className="showPasswordButton"
-                          >
-                            {showPassword ? (
-                              <VisibilityIcon />
-                            ) : (
-                              <VisibilityOffIcon />
-                            )}
-                          </IconButton>
-                        </InputAdornment>
-                      )
-                    }}
-                  />
+                  <div className="input_sec">
+                    <label htmlFor="email">Email</label>
+                    <TextField
+                      placeholder="johndoe123@gmail.com"
+                      variant="outlined"
+                      value={loginData.loginEmail}
+                      onChange={handleLoginEmailChange}
+                      fullWidth
+                      required
+                    />
+                  </div>
+                  <div className="input_sec">
+                    <label htmlFor="email">Password</label>
+                    <TextField
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Jy08nGx@i9n"
+                      variant="outlined"
+                      value={loginData.loginPassword}
+                      onChange={handleLoginPasswordChange}
+                      fullWidth
+                      required
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              onClick={handleTogglePassword}
+                              edge="end"
+                              size="small"
+                              className="showPasswordButton"
+                            >
+                              {showPassword ? (
+                                <VisibilityIcon />
+                              ) : (
+                                <VisibilityOffIcon />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        )
+                      }}
+                    />
+                  </div>
                   <Button
                     endIcon={<LoginIcon />}
                     type="submit"
